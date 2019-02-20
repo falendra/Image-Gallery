@@ -2,7 +2,7 @@
   width:100%;
   text-align: center;
   background-color:#222;
-
+  height: 100%;
 
 }
 
@@ -25,6 +25,7 @@
 .App-intro {
   font-size: large;
   background-color: #222;
+  height: 100%;
 }
 .IMAGE{
   flex: 1;
@@ -34,6 +35,7 @@
   height: 300px;
   margin: 4px;  
   max-width: 70%;
+  cursor: pointer;
 
 }
 .Search-Bar{
@@ -43,6 +45,9 @@
   
 }
 
+#nextPageButton{
+  color: rgb(252, 0, 0);
+}
 
 
 @keyframes App-logo-spin {
