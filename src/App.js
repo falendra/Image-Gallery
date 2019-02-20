@@ -41,7 +41,7 @@ class App extends Component {
 
   componentDidMount() {
     if (this.state.inputSearchQuery === null || this.state.inputSearchQuery === undefined || this.state.inputSearchQuery === "") {
-      this.setState({ pictures: [] });
+      this.setState({ pictures: [],page:1 });
       return;
     }
     console.log("inside mount: " + this.state.inputSearchQuery);
