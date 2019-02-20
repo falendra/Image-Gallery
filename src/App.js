@@ -9,12 +9,12 @@ class App extends Component {
 
     this.state = {
       pictures: [],
-      value: '',
+      inputSearchQuery: '',
       page: 1,
       totalPage: 1,
     };
     this.onSearchQueryChangeListener = this.onSearchQueryChangeListener.bind(this);
-    this.pageHandler = this.pageHandler.bind(this);
+    this.pageChangeHandler = this.pageChangeHandler.bind(this);
 
 
   }
@@ -23,14 +23,14 @@ class App extends Component {
     let self = this;
     console.log("handle change received value as " + event.target.value);
     this.setState(
-      { value: event.target.value + "" },
+      { inputSearchQuery: event.target.value + "" },
       () => { self.componentDidMount() }
     );
 
 
   }
 
-  pageHandler = () => {
+  pageChangeHandler = () => {
     console.log(this.state.totalPage);
     console.log(this.state.page);
     if (this.state.totalPage > this.state.page) {
@@ -40,12 +40,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (this.state.value === null || this.state.value === undefined || this.state.value === "") {
+    if (this.state.inputSearchQuery === null || this.state.inputSearchQuery === undefined || this.state.inputSearchQuery === "") {
       this.setState({ pictures: [] });
       return;
     }
-    console.log("inside mount: " + this.state.value);
-    fetch('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + process.env.REACT_APP_API_KEY + '&text=' + this.state.value + '&page=' + this.state.page + '&safe_search(1)&sort=relevance&format=json&nojsoncallback=1')
+    console.log("inside mount: " + this.state.inputSearchQuery);
+    fetch('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + process.env.REACT_APP_API_KEY + '&text=' + this.state.inputSearchQuery + '&page=' + this.state.page + '&safe_search(1)&sort=relevance&format=json&nojsoncallback=1')
       .then(function (response) {
         return response.json();
       })
@@ -90,7 +90,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to Gallery</h1>
         </header>
-        <input type="text" className="Search-Bar" value={this.state.value} onChange={this.onSearchQueryChangeListener} placeholder="Search in gallery.." />
+        <input type="text" className="Search-Bar" value={this.state.inputSearchQuery} onChange={this.onSearchQueryChangeListener} placeholder="Search in gallery.." />
 
 
         <p className="App-intro">
@@ -100,7 +100,7 @@ class App extends Component {
         </p>
 
 
-        <Button variant="primary" onClick={this.pageHandler} size="lg" id="nextPageButton()" block>
+        <Button variant="primary" onClick={this.pageChangeHandler} size="lg" id="nextPageButton()" block>
           Next Page >>
         </Button>
 
