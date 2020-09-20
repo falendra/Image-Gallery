@@ -9,7 +9,7 @@ class App extends Component {
 
     this.state = {
       pictures: [],
-      inputSearchQuery: '',
+      inputSearchQuery: 'dog',
       page: 1,
       totalPage: 1,
     };
